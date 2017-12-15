@@ -1,0 +1,11 @@
+{
+  "name": "polychain",
+  "version": "1.0.0",
+  "description": "Monopoly on blockchain",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "fakhruddin.shaukat@hotmail.com",
+  "license": "ISC"
+}
