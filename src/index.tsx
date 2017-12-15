@@ -1,19 +1,28 @@
-import * as React from "react";
-import * as ReactDOM from "react-dom";
+import * as React from 'react';
+import * as ReactDOM from 'react-dom';
+import { AppContainer } from 'react-hot-loader';
+import App from './app';
 
-interface HelloProps{
-    message: string;
+ReactDOM.render(
+    <AppContainer>
+        <App />
+    </AppContainer>,
+    document.getElementById('root') as HTMLElement
+);
+
+interface RequireImport {
+    default: any;
 }
 
-interface HelloState{
+if (module.hot) {
+    module.hot.accept('./app', () => {
+        console.log('doing a app hot accept')
+        const NextApp = require<RequireImport>('./app').default
+        ReactDOM.render(
+            <AppContainer>
+                <NextApp />
+            </AppContainer>,
+            document.getElementById('root')
+        );
+    });
 }
-
-class Hello extends React.Component<HelloProps,HelloState>{
-    render(){
-        return <h1>Hello {this.props.message} </h1>;
-    }
-}
-
-let div = document.createElement("div");
-document.body.appendChild(div);
-ReactDOM.render(<Hello message="PolyChain!"/>,div);

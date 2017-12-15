@@ -1,31 +1,38 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
+const webpack = require('webpack');
 
 module.exports = {
-    entry: path.resolve(__dirname,'src','index.tsx'),
+    entry: [
+        'react-hot-loader/patch',
+        path.resolve(__dirname, 'src', 'index.tsx')
+    ],
     devServer: {
-        contentBase : './dist'
+        contentBase: './dist',
+        hotOnly: true
     },
     devtool: 'inline-source-map',
     module: {
-        rules: [
+        loaders: [
             {
                 test: /\.tsx?$/,
-                use: 'ts-loader',
+                loader: ['react-hot-loader/webpack', 'ts-loader'],
                 exclude: /node_modules/
             }
         ]
     },
     resolve: {
-        extensions : ['.ts','.tsx','.js']
+        extensions: ['.ts', '.tsx', '.js', '.jsx']
     },
     plugins: [
         new CleanWebpackPlugin(),
-        new HtmlWebpackPlugin({title: 'Polychain'})
+        new HtmlWebpackPlugin({ template: './src/index.html', inject: true }),
+        new webpack.HotModuleReplacementPlugin(),
+        new webpack.NamedModulesPlugin(),
     ],
-    output:{
+    output: {
         filename: 'bundle.js',
-        path: path.resolve(__dirname,'dist')
+        path: path.resolve(__dirname, 'dist')
     }
 };
