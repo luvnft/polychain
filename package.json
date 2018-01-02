@@ -4,9 +4,10 @@
   "description": "Monopoly on blockchain",
   "main": "index.js",
   "scripts": {
+    "prebuild": "jest",
     "build": "webpack --config webpack.config.js",
     "start": "webpack-dev-server --open",
-    "test": "jest --watch",
+    "test": "jest --watch --coverage  --collectCoverageFrom=src/**/*",
     "lint": "tslint --project tsconfig.json",
     "lint:fix": "tslint --project tsconfig.json --fix"
     
