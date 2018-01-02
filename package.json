@@ -7,7 +7,9 @@
     "build": "webpack --config webpack.config.js",
     "start": "webpack-dev-server --open",
     "test": "jest --watch",
-    "lint": "tslint --project tsconfig.json"
+    "lint": "tslint --project tsconfig.json",
+    "lint:fix": "tslint --project tsconfig.json --fix"
+    
   },
   "jest": {
     "setupFiles": [

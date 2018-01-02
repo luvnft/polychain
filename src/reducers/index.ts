@@ -1,12 +1,12 @@
 
-import { combineReducers } from 'redux';
+import { combineReducers } from "redux";
 
-import { State } from '../state';
-import game from './gameReducer';
-import players from './playerReducer';
+import { State } from "../state";
+import game from "./gameReducer";
+import players from "./playerReducer";
 
 const rootReducer =  combineReducers<State>({
-    game,players
+    game, players,
 });
 
 export default rootReducer;

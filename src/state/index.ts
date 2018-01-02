@@ -3,11 +3,11 @@ export interface Player {
     id: number;
 }
 
-export type Game = {
+export interface Game {
     id: number;
 }
 
-export type State = {
-    game: Game,
-    players: Array<Player>;
-};
+export interface State {
+    game: Game;
+    players: Player[];
+}
