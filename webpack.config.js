@@ -14,7 +14,13 @@ module.exports = {
     },
     devtool: 'inline-source-map',
     module: {
-        loaders: [
+        rules: [
+            {
+                test: /\.ts$/,
+                enforce: 'pre',
+                loader: 'tslint-loader',
+                options: { /* Loader options go here */ }
+            },
             {
                 test: /\.tsx?$/,
                 loader: ['react-hot-loader/webpack', 'ts-loader'],
@@ -43,14 +49,14 @@ module.exports = {
         ]
     },
     resolve: {
-        extensions: ['.ts', '.tsx', '.js', '.jsx','.json']
+        extensions: ['.ts', '.tsx', '.js', '.jsx', '.json']
     },
     plugins: [
         new CleanWebpackPlugin(),
         new HtmlWebpackPlugin({ template: './src/index.html', inject: true }),
         new webpack.HotModuleReplacementPlugin(),
         new webpack.NamedModulesPlugin(),
-        new webpack.ProvidePlugin({$: "jquery",jQuery: "jquery"})
+        new webpack.ProvidePlugin({ $: "jquery", jQuery: "jquery" })
     ],
     output: {
         filename: 'bundle.js',
